@@ -1,0 +1,16 @@
+package com.Axel.ExtraStuff.Tools;
+
+import com.Axel.ExtraStuff.CreativeTab.CreativeTabExtrastuff;
+
+import net.minecraft.item.ItemSpade;
+
+public class EmeraldSpade extends ItemSpade {
+
+	public EmeraldSpade(ToolMaterial p_i45353_1_) {
+		super(p_i45353_1_);
+		this.setCreativeTab(CreativeTabExtrastuff.TabTools);
+		this.setUnlocalizedName("EmeralSpade");
+		this.setTextureName("extrastuff:EmeraldShovel");
+	}
+
+}

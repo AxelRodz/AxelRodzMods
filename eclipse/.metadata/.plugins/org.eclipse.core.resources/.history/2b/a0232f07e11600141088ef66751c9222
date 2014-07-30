@@ -1,0 +1,15 @@
+package com.Axel.ExtraStuff.Items;
+
+import com.Axel.ExtraStuff.CreativeTab.CreativeTabExtrastuff;
+
+import net.minecraft.item.Item;
+
+public class WaterDiamond extends Item {
+
+	public WaterDiamond(int i) {
+		this.setTextureName("extrastuff:WaterDiamond");
+		this.setUnlocalizedName("WaterDiamond");
+		this.setCreativeTab(CreativeTabExtrastuff.LMRB_TAB);
+	}
+
+}

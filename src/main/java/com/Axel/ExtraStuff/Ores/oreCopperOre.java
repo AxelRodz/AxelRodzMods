@@ -1,0 +1,21 @@
+package com.Axel.ExtraStuff.Ores;
+
+import com.Axel.ExtraStuff.CreativeTab.CreativeTabExtrastuff;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+
+public class oreCopperOre extends Block {
+
+	public  oreCopperOre(Material p_i45394_1_) {
+		super(p_i45394_1_);
+		this.setHardness(2.0F);
+		this.setResistance(5.0F);
+		this.setStepSound(soundTypeStone);
+		this.setCreativeTab(CreativeTabExtrastuff.Tab);
+		this.setBlockName("oreCopper");
+		this.setBlockTextureName("extrastuff:oreCopper");
+	}
+	
+
+}

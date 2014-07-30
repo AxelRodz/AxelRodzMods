@@ -1,0 +1,7 @@
+package com.Axel.ExtraStuff.food;
+
+import net.minecraft.item.Item;
+
+public class SteakBurger extends Item {
+
+}

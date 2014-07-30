@@ -1,0 +1,7 @@
+package com.Axel.ExtraStuff.Tools;
+
+import net.minecraft.item.Item;
+
+public class PhoenixPickaxe extends Item {
+
+}

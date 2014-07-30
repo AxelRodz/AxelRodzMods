@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="net.minecraft.item.ItemPickaxe"/>
+<fullyQualifiedTypeName name="net.minecraft.init.Blocks"/>
+<fullyQualifiedTypeName name="net.minecraft.world.World"/>
+<fullyQualifiedTypeName name="net.minecraft.entity.player.EntityPlayer"/>
+<fullyQualifiedTypeName name="net.minecraft.item.ItemStack"/>
+<fullyQualifiedTypeName name="com.Axel.ExtraStuff.ExtraStuff"/>
+<fullyQualifiedTypeName name="net.minecraft.enchantment.EnchantmentHelper"/>
+<fullyQualifiedTypeName name="net.minecraft.enchantment.Enchantment"/>
+<fullyQualifiedTypeName name="net.minecraftforge.common.ChestGenHooks"/>
+<fullyQualifiedTypeName name="net.minecraftforge.oredict.OreDictionary"/>
+<fullyQualifiedTypeName name="com.Axel.ExtraStuff.CreativeTab.CreativeTabExtrastuff"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,7 @@
+package com.Axel.ExtraStuff.O;
+
+import net.minecraft.block.Block;
+
+public class oreCopperOre extends Block {
+
+}

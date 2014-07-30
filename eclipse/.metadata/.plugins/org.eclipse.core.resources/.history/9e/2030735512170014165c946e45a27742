@@ -1,0 +1,7 @@
+package com.Axel.ExtraStuff.Toolso;
+
+import net.minecraft.item.Item;
+
+public class AmethystSpade extends Item {
+
+}

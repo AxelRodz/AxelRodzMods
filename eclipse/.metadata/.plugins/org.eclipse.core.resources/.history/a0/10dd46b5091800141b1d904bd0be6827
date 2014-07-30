@@ -1,0 +1,16 @@
+package com.Axel.ExtraStuff.Tools;
+
+import com.Axel.ExtraStuff.CreativeTab.CreativeTabExtrastuff;
+
+import net.minecraft.item.ItemSword;
+
+public class EmeraldSword extends ItemSword {
+
+	public EmeraldSword(ToolMaterial p_i45356_1_) {
+		super(p_i45356_1_);
+		this.setCreativeTab(CreativeTabExtrastuff.Tab);
+		this.setUnlocalizedName("EmeralSword");
+		this.setTextureName("extrastuff:EmeraldSword");
+	}
+
+}

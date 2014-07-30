@@ -1,0 +1,7 @@
+package com.Axel.ExtraStuff.Ingots;
+
+import net.minecraft.item.Item;
+
+public class ingotSteel extends Item {
+
+}

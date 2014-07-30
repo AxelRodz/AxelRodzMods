@@ -1,0 +1,18 @@
+package com.Axel.ExtraStuff.food;
+
+import com.Axel.ExtraStuff.CreativeTab.CreativeTabExtrastuff;
+
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
+
+public class SteakBurger extends ItemFood {
+
+	public SteakBurger(int j, float f, boolean b) {
+		super(j, b);
+		this.setCreativeTab(CreativeTabExtrastuff.LMRB_TAB);
+		this.setUnlocalizedName("SteakBurger");
+		this.setTextureName("extrastuff:SteakBurger");
+		
+	}
+
+}

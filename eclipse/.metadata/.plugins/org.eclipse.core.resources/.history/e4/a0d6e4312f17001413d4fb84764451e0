@@ -1,0 +1,7 @@
+package com.Axel.ExtraStuff.Tool;
+
+import net.minecraft.item.Item;
+
+public class EmeraldAxe extends Item {
+
+}

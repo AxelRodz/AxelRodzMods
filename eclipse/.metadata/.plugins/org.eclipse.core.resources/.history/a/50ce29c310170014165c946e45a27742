@@ -1,0 +1,7 @@
+package com.Axel.ExtraStuff.Items;
+
+import net.minecraft.item.Item;
+
+public class Amethyst extends Item {
+
+}

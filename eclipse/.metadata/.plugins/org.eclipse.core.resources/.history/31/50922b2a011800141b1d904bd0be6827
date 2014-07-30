@@ -1,0 +1,352 @@
+package com.Axel.ExtraStuff;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraftforge.common.ChestGenHooks;
+import net.minecraftforge.common.util.EnumHelper;
+
+import com.Axel.ExtraStuff.Lamps.Lamp;
+import com.Axel.ExtraStuff.Armor.CopperArmor;
+import com.Axel.ExtraStuff.Armor.WaterDiamondArmor;
+import com.Axel.ExtraStuff.CreativeTab.CreativeTabExtrastuff;
+import com.Axel.ExtraStuff.Ingots.itemCopperIngot;
+import com.Axel.ExtraStuff.Ingots.itemEmeraldIngot;
+import com.Axel.ExtraStuff.Items.Amethyst;
+import com.Axel.ExtraStuff.Items.WaterDiamond;
+import com.Axel.ExtraStuff.Ores.oreAmethyst;
+import com.Axel.ExtraStuff.Ores.oreCopperOre;
+import com.Axel.ExtraStuff.Tools.AmethystAxe;
+import com.Axel.ExtraStuff.Tools.AmethystPickaxe;
+import com.Axel.ExtraStuff.Tools.AmethystSpade;
+import com.Axel.ExtraStuff.Tools.AmethystSword;
+import com.Axel.ExtraStuff.Tools.EmeraldPickaxe;
+import com.Axel.ExtraStuff.Tools.EmeraldSpade;
+import com.Axel.ExtraStuff.Tools.EmeraldSword;
+import com.Axel.ExtraStuff.Tools.PhoenixPickaxe;
+import com.Axel.ExtraStuff.WorldGen.ExtraStuffWorldGen;
+import com.Axel.ExtraStuff.food.SteakBurger;
+import com.Axel.ExtraStuff.food.Toast;
+import com.Axel.ExtraStuff.lib.ProxyCommon;
+import com.Axel.ExtraStuff.lib.References;
+
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
+
+@Mod(modid = References.MODID, version = References.VERSION)
+public class ExtraStuff
+{
+ 
+	@SidedProxy(clientSide = References.CLIENT, serverSide = References.COMMON)
+	public static ProxyCommon proxy;
+	
+	ExtraStuffWorldGen eventWorldGen = new ExtraStuffWorldGen();
+	
+	//Armor Id's
+	private static int di;
+	private static int di2;
+	private static int di3;
+	private static int di4;
+	
+	//Armor and Tools Materials
+	public static ToolMaterial PhoenixTool = EnumHelper.addToolMaterial("PhoenixTool", 3, 1561, 5.0F, 5.0F, 10);
+	public static ToolMaterial EmeraldT = EnumHelper.addToolMaterial("EmeraldT",3, 251, 6.5F, 3.0F, 15);
+	public static ArmorMaterial CopperArmor = EnumHelper.addArmorMaterial ("CopperArmor", 15, new int[]{2, 6, 5, 2}, 9);
+	public static ToolMaterial AmethystTool = EnumHelper.addToolMaterial("AmethystTool", 4, 1562, 6, 4.0F, 11);
+	public static ArmorMaterial WaterDiamondArmor= EnumHelper.addArmorMaterial("WaterDiamondArmor",33, new int[]{3, 8, 6, 3}, 10);
+	
+	//Armor Items
+	public static Item WaterDiamondHelmet = new WaterDiamondArmor(WaterDiamondArmor, di, 0).setTextureName("extrastuff:WaterDiamondhelmet").setUnlocalizedName("WaterDiamondHelmet");
+	public static Item WaterDiamondChestplate = new WaterDiamondArmor(WaterDiamondArmor, di2, 1).setTextureName("extrastuff:WaterDiamondChestplate").setUnlocalizedName("WaterDiamondChestplate");
+	public static Item WaterDiamondLeggings = new WaterDiamondArmor(WaterDiamondArmor, di3, 2).setTextureName("extrastuff:WaterDiamondLeggings").setUnlocalizedName("WaterDiamondLeggings");
+	public static Item WaterDiamondBoots = new WaterDiamondArmor(WaterDiamondArmor, di4, 3).setTextureName("extrastuff:WaterDiamondBoots").setUnlocalizedName("WaterDiamondBoots");
+	
+	
+		public static Item CopperHelmet = new CopperArmor(CopperArmor, di, 0).setTextureName("extrastuff:copperhelmet").setUnlocalizedName("CopperHelmet");
+		public static Item CopperChestplate = new CopperArmor(CopperArmor, di2, 1).setTextureName("extrastuff:CopperChestplate").setUnlocalizedName("CopperChestplate");
+		public static Item CopperLeggings = new CopperArmor(CopperArmor, di3, 2).setTextureName("extrastuff:CopperLeggings").setUnlocalizedName("CopperLeggings");
+		public static Item CopperBoots = new CopperArmor(CopperArmor, di4, 3).setTextureName("extrastuff:CopperBoots").setUnlocalizedName("CopperBoots");
+	//Tools
+		public static Item PhoenixPickaxe = new PhoenixPickaxe(PhoenixTool);
+		
+		public static Item AmethystPickaxe = new AmethystPickaxe(AmethystTool);
+		public static Item AmethystSword = new AmethystSword(AmethystTool);
+		public static Item AmethystAxe = new AmethystAxe(AmethystTool);
+		public static Item AmethystSpade = new AmethystSpade(AmethystTool);
+		
+		public static Item EmeraldSword = new EmeraldSword(EmeraldT);
+		public static Item EmeraldPickaxe = new EmeraldPickaxe(EmeraldT);
+		public static Item EmeraldSpade = new EmeraldSpade(EmeraldT);
+		public static Item EmeraldAxe = new com.Axel.ExtraStuff.Tools.EmeraldAxe(EmeraldT);
+		
+		
+		
+		//Lamps
+	public static Block blockLampOn = new Lamp(true).setBlockName("LampOn");
+	public static Block blockLampOff = new Lamp(false).setBlockName("LampOff").setCreativeTab(CreativeTabExtrastuff.Tab);
+	//Food 
+	public static Item Toast = new Toast(4, 3.1F, true);
+	public static Item Burger = new SteakBurger(16, 5.1F, true);
+	//Sticks com.Axel.ExtraStuff.Items.IronStick <-- this means that the Iron Stick is in that package/Folder
+	public static Item IronStick = new com.Axel.ExtraStuff.Items.IronStick(4999);
+	//Ingot's
+	public static Item itemCopperIngot = new itemCopperIngot(4999);
+	public static Item itemEmeraldIngot =  new itemEmeraldIngot(4999);
+	//Gems
+	public static Item WaterDiamond = new WaterDiamond(4999);
+	public static Item Amethyst = new Amethyst(4999);
+	//Ores 
+	public static Block oreCopperOre = new oreCopperOre(Material.rock); 
+	public static Block oreAmethyst = new oreAmethyst(Material.rock);
+	
+    @EventHandler
+    public void init(FMLInitializationEvent event)
+    {
+	
+    }
+	public void load(FMLInitializationEvent event)
+    {
+		proxy.registerRenderInformation();
+    }
+	public ExtraStuff(){
+		
+		ChestGenHooks.addItem(ChestGenHooks.MINESHAFT_CORRIDOR, new WeightedRandomChestContent(new ItemStack(ExtraStuff.PhoenixPickaxe), 1, 5, 18));
+		ChestGenHooks.addItem(ChestGenHooks.PYRAMID_DESERT_CHEST, new WeightedRandomChestContent(new ItemStack(ExtraStuff.PhoenixPickaxe), 1, 5, 18));
+		ChestGenHooks.addItem(ChestGenHooks.PYRAMID_JUNGLE_CHEST, new WeightedRandomChestContent(new ItemStack(ExtraStuff.PhoenixPickaxe), 1, 5, 18));
+		ChestGenHooks.addItem(ChestGenHooks.PYRAMID_JUNGLE_DISPENSER, new WeightedRandomChestContent(new ItemStack(ExtraStuff.PhoenixPickaxe), 1, 5, 18));
+		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(new ItemStack(ExtraStuff.PhoenixPickaxe), 1, 5, 18));
+		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CROSSING, new WeightedRandomChestContent(new ItemStack(ExtraStuff.PhoenixPickaxe), 1, 5, 18));
+		ChestGenHooks.addItem(ChestGenHooks.BONUS_CHEST, new WeightedRandomChestContent(new ItemStack(ExtraStuff.PhoenixPickaxe), 2, 5, 10));
+		
+		
+		
+		
+		
+		
+		
+		GameRegistry.registerWorldGenerator(eventWorldGen, 0);
+		
+		GameRegistry.registerItem(Burger, "Burger");
+		LanguageRegistry.addName(Burger, "Burger");
+		
+		GameRegistry.registerItem(PhoenixPickaxe, "PhoenixPickaxe");
+		LanguageRegistry.addName(PhoenixPickaxe, "Phoenix Pickaxe");
+		
+		GameRegistry.registerItem(EmeraldPickaxe, "EmeraldPickaxe");
+		GameRegistry.registerItem(EmeraldSword, "EmeraldSword");
+		GameRegistry.registerItem(EmeraldSpade, "EmeraldShovel");
+		GameRegistry.registerItem(EmeraldAxe, "EmeraldAxe");
+		
+		LanguageRegistry.addName(EmeraldPickaxe, "Emerald Pickaxe");
+		LanguageRegistry.addName(EmeraldSword, "Emerald Sword");
+		LanguageRegistry.addName(EmeraldAxe, "Emerald Axe");
+		LanguageRegistry.addName(EmeraldSpade, "Emerald Spade");
+		
+		
+		
+		GameRegistry.registerItem(itemEmeraldIngot, "EmeraldIngot");
+		LanguageRegistry.addName(itemEmeraldIngot, "Emerald Ingot");
+		
+		GameRegistry.registerItem(WaterDiamondHelmet, "WaterDiamondHelmet");
+		GameRegistry.registerItem(WaterDiamondChestplate, "WaterDiamondChestplate");
+		GameRegistry.registerItem(WaterDiamondLeggings, "WaterDiamondLeggings");
+		GameRegistry.registerItem(WaterDiamondBoots, "WaterDiamondBoots");
+		
+		LanguageRegistry.addName(WaterDiamondHelmet, "WaterDiamond Helmet");
+		LanguageRegistry.addName(WaterDiamondChestplate, "WaterDiamond Chestplate");
+		LanguageRegistry.addName(WaterDiamondLeggings, "WaterDiamond Leggings");
+		LanguageRegistry.addName(WaterDiamondBoots, "WaterDiamond Boots");
+		
+		
+		GameRegistry.registerItem(AmethystPickaxe, "AmethystPickaxe");
+		GameRegistry.registerItem(AmethystSword, "AmethystSowrd");
+		GameRegistry.registerItem(AmethystSpade, "AmethystShovel");
+		GameRegistry.registerItem(AmethystAxe, "AmethystAxe");
+		
+		LanguageRegistry.addName(AmethystPickaxe, "Amethyst Pickaxe");
+		LanguageRegistry.addName(AmethystSword, "Amethyst Sword");
+		LanguageRegistry.addName(AmethystAxe, "Amethyst Axe");
+		LanguageRegistry.addName(AmethystSpade, "Amethyst Spade");
+		
+		GameRegistry.registerItem(Amethyst, "Amethyst");
+		LanguageRegistry.addName(Amethyst, "Amethyst");
+		
+		GameRegistry.registerBlock(oreAmethyst, "oreAmethyst");
+		LanguageRegistry.addName(oreAmethyst, "Amethyst Ore ");
+		
+		GameRegistry.registerItem(CopperHelmet, "CopperHelmet");
+		GameRegistry.registerItem(CopperChestplate, "CopperChestplate");
+		GameRegistry.registerItem(CopperLeggings, "CopperLeggings");
+		GameRegistry.registerItem(CopperBoots, "CopperBoots");
+		
+		LanguageRegistry.addName(CopperHelmet, "Copper Helmet");
+		LanguageRegistry.addName(CopperChestplate, "Copper Chestplate");
+		LanguageRegistry.addName(CopperLeggings, "Copper Leggings");
+		LanguageRegistry.addName(CopperBoots, "Copper Boots");
+		
+		GameRegistry.registerBlock(blockLampOff, "blockLampOff");
+		GameRegistry.registerBlock(blockLampOn, "blockLampOn");
+		LanguageRegistry.addName(blockLampOff, "Lamp");
+		
+		GameRegistry.registerItem(itemCopperIngot, "CopperIngot");
+		LanguageRegistry.addName(itemCopperIngot, "Copper Ingot");
+		
+		GameRegistry.registerItem(IronStick, "IronStick");
+		LanguageRegistry.addName(IronStick, "Iron Stick");
+		
+		GameRegistry.registerBlock(oreCopperOre, "oreCopperOre");
+		LanguageRegistry.addName(oreCopperOre, "Copper Ore");
+		
+		GameRegistry.registerItem(WaterDiamond, "WaterDiamond");
+		LanguageRegistry.addName(WaterDiamond, "Water Diamond");
+		
+		//Recipes
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.Burger, 4),
+				"BBB",
+				"MMM",
+				"BBB",
+				'M', Items.cooked_beef, 'B', Items.bread);
+
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.Burger , 4),
+				"BBB",
+				"MMM",
+				"BBB",
+				'M', Items.cooked_porkchop, 'B', Items.bread);
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.Burger, 4),
+				"BBB",
+				"MMM",
+				"BBB",
+				'M', Items.cooked_chicken, 'B', Items.bread);
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.EmeraldPickaxe), 
+				"EEE",
+				" S ",
+				" S ",
+				'E', ExtraStuff.itemEmeraldIngot, 'S', Items.stick);
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.EmeraldAxe), 
+				"EE ",
+				"ES ",
+				" S",
+				'E', ExtraStuff.itemEmeraldIngot, 'S', Items.stick);
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.EmeraldSword), 
+				" E ",
+				" E ",
+				" S ",
+				'E', ExtraStuff.itemEmeraldIngot, 'S', Items.stick);
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.EmeraldSpade), 
+				" E ",
+				" S ",
+				" S ",
+				'E', ExtraStuff.itemEmeraldIngot, 'S', Items.stick);
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.AmethystSword), 
+				" A ",
+				" A ",
+				" I ",
+				'A', ExtraStuff.Amethyst, 'I', ExtraStuff.IronStick);
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.AmethystPickaxe),
+				"AAA",
+				" I ",
+				" I ",
+				'A', ExtraStuff.Amethyst, 'I', ExtraStuff.IronStick);
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.AmethystSpade), 
+				" A ",
+				" I ",
+				" I ",
+				'A', ExtraStuff.Amethyst, 'I', ExtraStuff.IronStick);	
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.AmethystAxe), 
+				"AA ",
+				"AI ",
+				" I ",
+				'A', ExtraStuff.Amethyst, 'I', ExtraStuff.IronStick);
+		
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.WaterDiamond), 
+				" W ",
+				"WDW",
+				" W ",
+				'D', Items.diamond, 'W', Items.water_bucket);
+		
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.WaterDiamondHelmet), 
+				"WWW",
+				"W W",
+				"   ",
+				'W', ExtraStuff.WaterDiamond);
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.WaterDiamondChestplate), 
+				"W W",
+				"WWW",
+				"WWW",
+				'W', ExtraStuff.WaterDiamond);
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.WaterDiamondLeggings), 
+				"WWW",
+				"W W",
+				"W W",
+				'W', ExtraStuff.WaterDiamond);
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.WaterDiamondBoots), 
+				"W W",
+				"W W",
+				"   ",
+				'W', ExtraStuff.WaterDiamond);
+		
+		
+		//CopperArmor
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.CopperHelmet), 
+				"WWW",
+				"W W",
+				"   ",
+				'W', ExtraStuff.itemCopperIngot);
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.CopperChestplate), 
+				"W W",
+				"WWW",
+				"WWW",
+				'W', ExtraStuff.itemCopperIngot);
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.CopperLeggings), 
+				"WWW",
+				"W W",
+				"W W",
+				'W', ExtraStuff.itemCopperIngot);
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.CopperBoots), 
+				"W W",
+				"W W",
+				"   ",
+				'W', ExtraStuff.itemCopperIngot);
+		
+		GameRegistry.addRecipe(new ItemStack(ExtraStuff.blockLampOff), 
+				"RGR",
+				"GLG",
+				"RGR",
+				'G', Items.glowstone_dust, 'L', Blocks.redstone_lamp, 'R',Blocks.redstone_block);
+		
+		//Melting
+		GameRegistry.addSmelting(ExtraStuff.oreCopperOre, new ItemStack(ExtraStuff.itemCopperIngot), 20);
+		GameRegistry.addSmelting(Items.bread, new ItemStack(ExtraStuff.Toast), 30);
+		GameRegistry.addSmelting(Items.emerald, new ItemStack(ExtraStuff.itemEmeraldIngot), 50);
+		
+		
+	}
+}

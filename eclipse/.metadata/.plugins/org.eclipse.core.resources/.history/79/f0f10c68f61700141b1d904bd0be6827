@@ -1,0 +1,17 @@
+package com.Axel.ExtraStuff.Tools;
+
+import com.Axel.ExtraStuff.CreativeTab.CreativeTabExtrastuff;
+
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemPickaxe;
+
+public class PhoenixPickaxe extends ItemPickaxe {
+
+	protected PhoenixPickaxe(ToolMaterial p_i45347_1_) {
+		super(p_i45347_1_);
+		this.setCreativeTab(CreativeTabExtrastuff.TabTools);
+		this.setUnlocalizedName("PhoenixPickaxe");
+		this.setTextureName("extrastuff:PoenixPickaxe");
+	}
+
+}

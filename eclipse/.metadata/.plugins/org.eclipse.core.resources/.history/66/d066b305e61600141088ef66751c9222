@@ -1,0 +1,79 @@
+package com.Axel.ExtraStuff;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraftforge.common.util.EnumHelper;
+
+import com.Axel.ExtraStuff.Lamps.Lamp;
+import com.Axel.ExtraStuff.CreativeTab.CreativeTabExtrastuff;
+import com.Axel.ExtraStuff.Ingots.itemCopperIngot;
+import com.Axel.ExtraStuff.Items.WaterDiamond;
+import com.Axel.ExtraStuff.Ores.oreCopperOre;
+import com.Axel.ExtraStuff.food.Toast;
+import com.Axel.ExtraStuff.lib.ProxyCommon;
+import com.Axel.ExtraStuff.lib.References;
+
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
+
+@Mod(modid = References.MODID, version = References.VERSION)
+public class ExtraStuff
+{
+ 
+	@SidedProxy(clientSide = References.CLIENT, serverSide = References.COMMON)
+	public static ProxyCommon proxy;
+	//Amor Ids
+	private static int di;
+	private static int di2;
+	private static int di3;
+	private static int di4;
+	//Armor and Tools Materials
+	public static ArmorMaterial CopperArmor = EnumHelper.addArmorMaterial(Copper, 15, new int[]{2, 6, 5, 2}, 9);
+	//Lamps
+	public static Block blockLampOn = new Lamp(true).setBlockName("PurpleLampOn");
+	public static Block blockLampOff = new Lamp(false).setBlockName("PurpleLampOff").setCreativeTab(CreativeTabExtrastuff.Tab);
+	//Food Pending 
+	public static Item Toast = new Toast(4, 3.1F, true);
+	//Sticks com.Axel.ExtraStuff.Items.IronStick <-- this means that the Iron Stick is in that package/Folder
+	public static Item IronStick = new com.Axel.ExtraStuff.Items.IronStick(4999);
+	//Ingot's
+	public static Item itemCopperIngot = new itemCopperIngot(4999);
+	//Gems
+	public static Item WaterDiamond = new WaterDiamond(4999);
+	//Ores 
+	public static Block oreCopperOre = new oreCopperOre(Material.rock); 
+	
+    @EventHandler
+    public void init(FMLInitializationEvent event)
+    {
+	
+    }
+	public void load(FMLInitializationEvent event)
+    {
+		proxy.registerRenderInformation();
+    }
+	public ExtraStuff(){
+		
+		GameRegistry.registerBlock(blockLampOff, "blockLampOff");
+		GameRegistry.registerBlock(blockLampOn, "blockLampOn");
+		LanguageRegistry.addName(blockLampOff, "Lamp");
+		
+		GameRegistry.registerItem(itemCopperIngot, "CopperIngot");
+		LanguageRegistry.addName(itemCopperIngot, "Copper Ingot");
+		
+		GameRegistry.registerItem(IronStick, "IronStick");
+		LanguageRegistry.addName(IronStick, "Iron Stick");
+		
+		GameRegistry.registerBlock(oreCopperOre, "oreCopperOre");
+		LanguageRegistry.addName(oreCopperOre, "Copper Ore");
+		
+		GameRegistry.registerItem(WaterDiamond, "WaterDiamond");
+		LanguageRegistry.addName(WaterDiamond, "Water Diamond");
+	}
+}
